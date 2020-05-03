@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:crce_attendance_tracker/userhome.dart';
+import 'package:crce_attendance_tracker/start.dart';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+
+  final bool timetableAdded;
+  Home({this.timetableAdded});
 
   @override
   _HomeState createState() => _HomeState();
@@ -9,23 +13,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  bool setupTimetable = false;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        centerTitle: true,
-        title: Text(
-          'Attendance Tracker',
-          style: TextStyle(
-            fontSize: 28.0,
-            color: Colors.black,
-          ),
-        ),
-      ),
-    );
+
+    if(widget.timetableAdded==null){
+      return Start();
+    }
+    else{
+      return UserHome();
+    }
+    
   }
 }
