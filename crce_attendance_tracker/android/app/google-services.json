@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1004600280751",
+    "firebase_url": "https://attendancetracker-dbf31.firebaseio.com",
+    "project_id": "attendancetracker-dbf31",
+    "storage_bucket": "attendancetracker-dbf31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004600280751:android:7624343aae04280865765a",
+        "android_client_info": {
+          "package_name": "com.example.crce_attendance_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004600280751-7guphu9cdnm3ubp7amjrjjo0rlb4q8h9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKJnwfxwngKEZQ09tsYIrE0rpaw45Cpn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004600280751-7guphu9cdnm3ubp7amjrjjo0rlb4q8h9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
