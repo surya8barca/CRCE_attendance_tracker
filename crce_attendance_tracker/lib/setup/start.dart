@@ -409,7 +409,7 @@ class _StartState extends State<Start> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Next1(
-                                          totalTheorySubjects: theorySubjects),
+                                          totalTheorySubjects: theorySubjects,totalPracticalSubjects: practicalSubjects),
                                     ));
                               } else {
                                 print('error');

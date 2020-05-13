@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crce_attendance_tracker/setup/next2.dart';
+import 'package:crce_attendance_tracker/home.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class Next1 extends StatefulWidget {
-  final int totalTheorySubjects, totalPracticalSubjects;
-  Next1({this.totalTheorySubjects, this.totalPracticalSubjects});
+class Next2 extends StatefulWidget {
+  final int totalPracticalSubjects;
+  Next2({this.totalPracticalSubjects});
 
   @override
-  _Next1State createState() => _Next1State();
+  _Next2State createState() => _Next2State();
 }
 
-class _Next1State extends State<Next1> {
+class _Next2State extends State<Next2> {
   final snackbar = SnackBar(
     content: Text(
       'Subject Added',
@@ -33,7 +33,7 @@ class _Next1State extends State<Next1> {
 
   Future<bool> addTheorySubject() async {
     final CollectionReference theorySubjects =
-        Firestore.instance.collection('Theory Subjects');
+        Firestore.instance.collection('Practical Subjects');
     final snapShot = await theorySubjects.document(subjectName).get();
     if (snapShot.exists) {
       Alert(
@@ -81,7 +81,7 @@ class _Next1State extends State<Next1> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'Enter Details of Theory Subjects',
+                            'Enter Details of Practical Subjects',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -98,7 +98,7 @@ class _Next1State extends State<Next1> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   for (int i = 0;
-                                      i < widget.totalTheorySubjects;
+                                      i < widget.totalPracticalSubjects;
                                       i++)
                                     Column(
                                       children: <Widget>[
@@ -235,16 +235,73 @@ class _Next1State extends State<Next1> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Next2(
-                                          totalPracticalSubjects:
-                                              widget.totalPracticalSubjects)));
+                              Alert(
+                                context: context,
+                                style: AlertStyle(
+                                  backgroundColor: Colors.cyan,
+                                ),
+                                title: "Logout",
+                                desc: "Are you sure you want to logout?",
+                                buttons: [],
+                                content: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      ButtonTheme(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        buttonColor: Colors.black,
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            'No',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      ButtonTheme(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        buttonColor: Colors.black,
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => Home(),
+                                                ),
+                                                (route) => false);
+                                          },
+                                          child: Text(
+                                            'Yes',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ).show();
                             },
                             color: Colors.blue,
                             child: Text(
-                              'Next',
+                              'Finish',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
