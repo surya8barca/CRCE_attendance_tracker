@@ -4,30 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
-  
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
   bool databaseEmpty;
 
-  Future<void> checkdatabaseEmptyence()async{
-    try{
-      QuerySnapshot snapshot = await Firestore.instance.collection('Database').getDocuments();
-      if(snapshot.documents.isEmpty)
-      {
+  Future<void> checkdatabaseEmptyence() async {
+    try {
+      QuerySnapshot snapshot =
+          await Firestore.instance.collection('Database').getDocuments();
+      if (snapshot.documents.isEmpty) {
         setState(() {
-          databaseEmpty=true;
+          databaseEmpty = true;
         });
+      } else {
+        databaseEmpty = false;
       }
-      else{
-        databaseEmpty=false;
-      }
-    } 
-    catch(e)
-    {
+    } catch (e) {
       print(e.message);
     }
   }
@@ -40,13 +35,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(databaseEmpty==true){
-      return Start();       //first page (database setup)
+    if (databaseEmpty == true) {
+      return Start(); //first page (database setup)
+    } else {
+      return UserHome(); //general user home(after setup)
     }
-    else{
-      return UserHome();    //general user home(after setup)
-    }
-    
   }
 }

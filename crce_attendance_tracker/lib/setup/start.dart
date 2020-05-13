@@ -54,19 +54,19 @@ class _StartState extends State<Start> {
 
   //adding to database
   Future<void> adduserdetails() async {
-    final CollectionReference database = Firestore.instance.collection('Database');
-    try{
+    final CollectionReference database =
+        Firestore.instance.collection('Database');
+    try {
       database.document('User Details').setData({
-        'name':name,
-        'roll_no':rollno,
-        'branch':branch,
-        'sem':semester,
-        'total_theory_subjects':theorySubjects,
-        'total_practical_subjects':practicalSubjects,
-        'attendance':attendance,
+        'name': name,
+        'roll_no': rollno,
+        'branch': branch,
+        'sem': semester,
+        'total_theory_subjects': theorySubjects,
+        'total_practical_subjects': practicalSubjects,
+        'attendance': attendance,
       });
-    } 
-    catch(e){
+    } catch (e) {
       print(e.message);
     }
   }
@@ -395,17 +395,23 @@ class _StartState extends State<Start> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 15,),
+                          SizedBox(
+                            height: 15,
+                          ),
                           FlatButton(
                             padding: EdgeInsets.all(15),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
-                            onPressed: () async{
+                            onPressed: () async {
                               if (validation()) {
                                 await adduserdetails();
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Next1(totalTheorySubjects: theorySubjects),));
-                              }
-                              else{
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Next1(
+                                          totalTheorySubjects: theorySubjects),
+                                    ));
+                              } else {
                                 print('error');
                               }
                             },
@@ -419,7 +425,9 @@ class _StartState extends State<Start> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 15,),
+                          SizedBox(
+                            height: 15,
+                          ),
                         ])))));
   }
 }
