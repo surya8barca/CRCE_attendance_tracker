@@ -194,7 +194,8 @@ class _Next1State extends State<Next1> {
                                                           .showSnackBar(
                                                               snackbar);
                                                     }
-                                                  } else {
+                                                  } 
+                                                  else {
                                                     Alert(
                                                             context: context,
                                                             title:

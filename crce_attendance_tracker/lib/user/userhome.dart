@@ -8,8 +8,8 @@ class UserHome extends StatefulWidget {
 class _UserHomeState extends State<UserHome> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('user'),
+    return Scaffold(
+      
     );
   }
 }
