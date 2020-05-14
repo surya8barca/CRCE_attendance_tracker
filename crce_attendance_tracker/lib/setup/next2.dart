@@ -185,7 +185,7 @@ class _Next2State extends State<Next2> {
                                                         BorderRadius.circular(
                                                             20)),
                                                 onPressed: () async {
-                                                  if (subjectName != null ||
+                                                  if (subjectName != null &&
                                                       subjectName != '') {
                                                     bool result =
                                                         await addTheorySubject();
@@ -240,8 +240,8 @@ class _Next2State extends State<Next2> {
                                 style: AlertStyle(
                                   backgroundColor: Colors.cyan,
                                 ),
-                                title: "Logout",
-                                desc: "Are you sure you want to logout?",
+                                title: "Finish",
+                                desc: "Are you sure you want to finish the setup?",
                                 buttons: [],
                                 content: Padding(
                                   padding: const EdgeInsets.all(15.0),

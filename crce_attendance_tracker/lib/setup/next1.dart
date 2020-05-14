@@ -185,7 +185,7 @@ class _Next1State extends State<Next1> {
                                                         BorderRadius.circular(
                                                             20)),
                                                 onPressed: () async {
-                                                  if (subjectName != null ||
+                                                  if (subjectName != null &&
                                                       subjectName != '') {
                                                     bool result =
                                                         await addTheorySubject();
