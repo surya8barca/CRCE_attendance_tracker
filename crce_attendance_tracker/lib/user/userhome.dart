@@ -11,16 +11,52 @@ class UserHome extends StatefulWidget {
 
 class _UserHomeState extends State<UserHome> {
 
-  dynamic userdetails;
+  DocumentSnapshot userdetails;
 
   Future<void> getuserdetails() async {
     
     try{
       final CollectionReference userdata = Firestore.instance.collection('Database');
-      dynamic result = await userdata.document('User Details').get(); 
+      DocumentSnapshot result = await userdata.document('User Details').get(); 
       setState((){
       userdetails= result;
+      print(userdetails.data);
     });
+    await gettheorysubjects();
+    await getpracticalsubjects();
+    }
+    catch(e)
+    {
+      print(e.message);
+    }
+  }
+
+  Future<void> gettheorysubjects() async{
+    try{
+      final CollectionReference theorysubjects = Firestore.instance.collection('Theory Subjects');
+      QuerySnapshot alltheorysubjects = await theorysubjects.getDocuments();
+      for(int i = 0;i< alltheorysubjects.documents.length;i++)
+      {
+        print(alltheorysubjects.documents[i].data);
+      }
+      
+      
+    }
+    catch(e)
+    {
+      print(e.message);
+    }
+  }
+
+  Future<void> getpracticalsubjects() async{
+    try{
+      final CollectionReference practicalsubjects = Firestore.instance.collection('Practical Subjects');
+      QuerySnapshot allpracticalsubjects = await practicalsubjects.getDocuments();
+      for(int i = 0;i< allpracticalsubjects.documents.length;i++)
+      {
+        print(allpracticalsubjects.documents[i].data);
+      }
+      
     }
     catch(e)
     {

@@ -10,9 +10,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   bool databaseEmpty;
 
-  Future<void> checkdatabaseEmptyence() async {
+  Future<void> checkdatabaseEmpty() async {
     try {
       QuerySnapshot snapshot =
           await Firestore.instance.collection('Database').getDocuments();
@@ -29,9 +30,14 @@ class _HomeState extends State<Home> {
     }
   }
 
+  Future<void> user() async{
+    await checkdatabaseEmpty();
+    setState(() {});
+  }
+
   @override
   void initState() {
-    checkdatabaseEmptyence();
+    user();
     super.initState();
   }
 
