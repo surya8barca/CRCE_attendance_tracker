@@ -26,6 +26,7 @@ dependencies:
   rflutter_alert:
   flutter_spinkit:
   cloud_firestore:
+  curved_navigation_bar:
 
 
 dev_dependencies:

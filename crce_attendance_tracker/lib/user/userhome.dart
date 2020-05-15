@@ -1,7 +1,9 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crce_attendance_tracker/loading.dart';
+import 'package:crce_attendance_tracker/user/display.dart';
+import 'package:crce_attendance_tracker/user/practical.dart';
+import 'package:crce_attendance_tracker/user/theory.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class UserHome extends StatefulWidget {
@@ -39,8 +41,6 @@ class _UserHomeState extends State<UserHome> {
       {
         print(alltheorysubjects.documents[i].data);
       }
-      
-      
     }
     catch(e)
     {
@@ -63,6 +63,14 @@ class _UserHomeState extends State<UserHome> {
       print(e.message);
     }
   }
+
+  int index=0;
+  List pages=[
+    Display(),
+    TheorySubjects(),
+    PracticalSubjects()
+
+  ];
 
   @override
   void initState() {
@@ -89,6 +97,25 @@ class _UserHomeState extends State<UserHome> {
             ),
           ),
         ),
+        body: pages[index],
+        bottomNavigationBar: CurvedNavigationBar(
+          animationCurve: Curves.bounceOut,
+          onTap: (value) {
+            print(index);
+            setState(() {
+              index=value;
+              print(index);
+            });
+          },
+          items:<Widget> [
+            Icon(Icons.home,color: Colors.white,),
+            Icon(Icons.book,color: Colors.white,),
+            Icon(Icons.laptop_chromebook,color: Colors.white,),
+          ],
+          height: 70,
+          buttonBackgroundColor: Colors.blue,
+          color: Colors.black,
+          ),
       );
     }
   }
