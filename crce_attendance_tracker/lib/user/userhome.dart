@@ -1,4 +1,4 @@
-import 'package:crce_attendance_tracker/user/display.dart';
+import 'package:crce_attendance_tracker/user/status.dart';
 import 'package:crce_attendance_tracker/user/practical.dart';
 import 'package:crce_attendance_tracker/user/theory.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -11,7 +11,7 @@ class UserHome extends StatefulWidget {
 
 class _UserHomeState extends State<UserHome> {
   int index = 1;
-  List pages = [TheorySubjects(), Display(), PracticalSubjects()];
+  List pages = [TheorySubjects(), Status(), PracticalSubjects()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
