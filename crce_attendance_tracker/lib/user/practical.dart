@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crce_attendance_tracker/bodyloading.dart';
 import 'package:flutter/material.dart';
 
 class PracticalSubjects extends StatefulWidget {
@@ -6,17 +8,40 @@ class PracticalSubjects extends StatefulWidget {
 }
 
 class _PracticalSubjectsState extends State<PracticalSubjects> {
+  bool dataloaded = false;
+  Future<void> getpracticalsubjects() async {
+    try {
+      final CollectionReference practicalsubjects =
+          Firestore.instance.collection('Practical Subjects');
+      QuerySnapshot allpracticalsubjects =
+          await practicalsubjects.getDocuments();
+      for (int i = 0; i < allpracticalsubjects.documents.length; i++) {
+        print(allpracticalsubjects.documents[i].data);
+      }
+      setState(() {
+        dataloaded = true;
+      });
+    } catch (e) {
+      print(e.message);
+    }
+  }
 
   @override
   void initState() {
-    print('init state pracs');
+    getpracticalsubjects();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey,
-      child: Text('practical'),
-    );
+    if (!dataloaded) {
+      return BodyLoading();
+    } else {
+      return SingleChildScrollView(
+        child: Container(
+          child: Text('practical'),
+        ),
+      );
+    }
   }
 }

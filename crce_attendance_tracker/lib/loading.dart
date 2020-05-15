@@ -7,7 +7,6 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +30,7 @@ class _LoadingState extends State<Loading> {
               'Loading Data',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                  color: Colors.red),
+                  fontWeight: FontWeight.bold, fontSize: 35, color: Colors.red),
             ),
             SizedBox(
               height: 15,

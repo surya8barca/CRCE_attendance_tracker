@@ -10,7 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   bool databaseEmpty;
 
   Future<void> checkdatabaseEmpty() async {
@@ -22,7 +21,6 @@ class _HomeState extends State<Home> {
           databaseEmpty = true;
         });
       } else {
-        
         databaseEmpty = false;
       }
     } catch (e) {
@@ -30,7 +28,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Future<void> user() async{
+  Future<void> user() async {
     await checkdatabaseEmpty();
     setState(() {});
   }
@@ -45,10 +43,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     if (databaseEmpty == true) {
       return Start(); //first page (database setup)
-    } else if(databaseEmpty == false) {
+    } else if (databaseEmpty == false) {
       return UserHome(); //general user home(after setup)
-    }
-    else{
+    } else {
       return Loading();
     }
   }
