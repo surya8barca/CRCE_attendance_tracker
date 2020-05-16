@@ -148,7 +148,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                                               .data["name_of_subject"],
                                           style: TextStyle(
                                             color: Colors.blue,
-                                            fontSize: 40,
+                                            fontSize: 35,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -192,7 +192,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                                       ),
                                       Center(
                                         child: Text(
-                                          '${alltheorysubjects.documents[i].data["attendance"].toStringAsPrecision(4)} %',
+                                          '${alltheorysubjects.documents[i].data["attendance"].toStringAsPrecision(3)} %',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.orange,

@@ -34,16 +34,16 @@ class _StatusState extends State<Status> {
       {
         total2=total2+theory.documents[i].data["attendance"];
       }
-      print("total theory:${total2.toStringAsPrecision(4)}");
-      print("total pracs:${total1.toStringAsPrecision(4)}");
+      print("total theory:${total2.toStringAsPrecision(3)}");
+      print("total pracs:${total1.toStringAsPrecision(3)}");
 
       setState(() {
         practicalattendance=total1/pracs.documents.length;
         theoryattendance=total2/theory.documents.length;
       });
 
-      print("theory:${theoryattendance.toStringAsPrecision(4)}");
-      print("pracs:${{practicalattendance.toStringAsPrecision(4)}}");
+      print("theory:${theoryattendance.toStringAsPrecision(3)}");
+      print("pracs:${{practicalattendance.toStringAsPrecision(3)}}");
 
       await userdata.document('User Details').updateData({
 
@@ -110,14 +110,28 @@ class _StatusState extends State<Status> {
                 ),
               ),
               SizedBox(
-                height: 25,
+                height: 15,
               ),
+              Text(
+                  'Theory Attendance: ${theoryattendance.toStringAsPrecision(3)}%',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
+              Text(
+                  'Practical Attendance: ${practicalattendance.toStringAsPrecision(3)}%',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
               Center(
                 child: Text(
-                  'Current Attendance',
+                  'Overall Attendance',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: attendancecolor,
+                    color: Colors.cyan,
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
@@ -128,7 +142,7 @@ class _StatusState extends State<Status> {
               ),
               Center(
                 child: Text(
-                  '${userdetails.data["attendance"].toStringAsPrecision(4)} %',
+                  '${userdetails.data["attendance"].toStringAsPrecision(3)} %',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: attendancecolor,
@@ -140,17 +154,19 @@ class _StatusState extends State<Status> {
               SizedBox(
                 height: 15,
               ),
-              Text(
-                alert,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: attendancecolor,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+              Center(
+                child: Text(
+                  alert,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: attendancecolor,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(
-                height: 70,
+                height: 60,
               ),
               Center(
                 child: Text(

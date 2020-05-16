@@ -148,7 +148,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                               .data["name_of_subject"],
                                           style: TextStyle(
                                             color: Colors.blue,
-                                            fontSize: 40,
+                                            fontSize: 35,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -192,7 +192,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                       ),
                                       Center(
                                         child: Text(
-                                          '${allpracticalsubjects.documents[i].data["attendance"].toStringAsPrecision(4)} %',
+                                          '${allpracticalsubjects.documents[i].data["attendance"].toStringAsPrecision(3)} %',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.orange,
