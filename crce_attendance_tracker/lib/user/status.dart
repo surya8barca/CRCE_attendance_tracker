@@ -8,12 +8,57 @@ class Status extends StatefulWidget {
 }
 
 class _StatusState extends State<Status> {
+
   DocumentSnapshot userdetails;
+  Color attendancecolor = Colors.green;
+  String alert = 'Attendance above required (75%)';
+  double practicalattendance,theoryattendance;
+
+  final CollectionReference userdata =
+          Firestore.instance.collection('Database');
+  final CollectionReference practicalsubjects =
+          Firestore.instance.collection('Practical Subjects');
+  final CollectionReference theorysubjects =
+          Firestore.instance.collection('Theory Subjects');
+
+  Future<void> getattendance() async{
+    try{
+      QuerySnapshot theory=await theorysubjects.getDocuments();
+      QuerySnapshot pracs=await practicalsubjects.getDocuments();
+      double total1=0,total2=0;
+      for(int i=0;i<pracs.documents.length;i++)
+      {
+        total1=total1+pracs.documents[i].data["attendance"];
+      }
+      for(int i=0;i<theory.documents.length;i++)
+      {
+        total2=total2+theory.documents[i].data["attendance"];
+      }
+      print("total theory:${total2.toStringAsPrecision(4)}");
+      print("total pracs:${total1.toStringAsPrecision(4)}");
+
+      setState(() {
+        practicalattendance=total1/pracs.documents.length;
+        theoryattendance=total2/theory.documents.length;
+      });
+
+      print("theory:${theoryattendance.toStringAsPrecision(4)}");
+      print("pracs:${{practicalattendance.toStringAsPrecision(4)}}");
+
+      await userdata.document('User Details').updateData({
+
+        "attendance":((practicalattendance+theoryattendance)/2),
+      });    
+      }
+    catch(e)
+    {
+      print(e.message);
+    }
+  }
 
   Future<void> getuserdetails() async {
     try {
-      final CollectionReference userdata =
-          Firestore.instance.collection('Database');
+      await getattendance();
       DocumentSnapshot result = await userdata.document('User Details').get();
       setState(() {
         userdetails = result;
@@ -30,8 +75,7 @@ class _StatusState extends State<Status> {
     }
   }
 
-  Color attendancecolor = Colors.green;
-  String alert = 'Attendance is good';
+  
 
   @override
   void initState() {
@@ -47,7 +91,6 @@ class _StatusState extends State<Status> {
       return SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -85,11 +128,11 @@ class _StatusState extends State<Status> {
               ),
               Center(
                 child: Text(
-                  '${userdetails.data["attendance"].toString()} %',
+                  '${userdetails.data["attendance"].toStringAsPrecision(4)} %',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: attendancecolor,
-                    fontSize: 100,
+                    fontSize: 80,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -192,7 +192,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                       ),
                                       Center(
                                         child: Text(
-                                          '${allpracticalsubjects.documents[i].data["attendance"].toString()} %',
+                                          '${allpracticalsubjects.documents[i].data["attendance"].toStringAsPrecision(4)} %',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.orange,
@@ -299,12 +299,6 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                                 ),
                                               ),
                                             ).show();
-                                            //addlecture(allpracticalsubjects.documents[i].data);
-                                            //increment total_lectures
-                                            //ask for present/abset
-                                            //update lectures attended accordingly
-                                            //update attendance of subject selected
-                                            //update ovrall attendance
                                           },
                                           child: Text(
                                             'Add Lecture',
