@@ -46,6 +46,8 @@ class _StatusState extends State<Status> {
     } else {
       return SingleChildScrollView(
         child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -105,36 +107,18 @@ class _StatusState extends State<Status> {
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 70,
               ),
               Center(
                 child: Text(
-                  'Navbar for adding lectures',
+                  '(Use Navbar for adding lectures)',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.cyan,
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 25,
-                  ),
-                  Icon(
-                    Icons.arrow_downward,
-                    size: 50,
-                  ),
-                  SizedBox(
-                    width: 185,
-                  ),
-                  Icon(
-                    Icons.arrow_downward,
-                    size: 50,
-                  ),
-                ],
-              )
             ],
           ),
         ),
