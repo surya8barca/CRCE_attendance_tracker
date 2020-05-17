@@ -6,7 +6,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class Next1 extends StatefulWidget {
   final int totalTheorySubjects, totalPracticalSubjects;
   final String uid;
-  Next1({this.totalTheorySubjects, this.totalPracticalSubjects,this.uid});
+  Next1({this.totalTheorySubjects, this.totalPracticalSubjects, this.uid});
 
   @override
   _Next1State createState() => _Next1State();
@@ -194,8 +194,7 @@ class _Next1State extends State<Next1> {
                                                           .showSnackBar(
                                                               snackbar);
                                                     }
-                                                  } 
-                                                  else {
+                                                  } else {
                                                     Alert(
                                                             context: context,
                                                             title:
@@ -241,7 +240,8 @@ class _Next1State extends State<Next1> {
                                   MaterialPageRoute(
                                       builder: (context) => Next2(
                                           totalPracticalSubjects:
-                                              widget.totalPracticalSubjects,uid:widget.uid)));
+                                              widget.totalPracticalSubjects,
+                                          uid: widget.uid)));
                             },
                             color: Colors.blue,
                             child: Text(

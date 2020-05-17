@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crce_attendance_tracker/bodyloading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -9,6 +10,7 @@ class TheorySubjects extends StatefulWidget {
 }
 
 class _TheorySubjectsState extends State<TheorySubjects> {
+  static String uid;
   bool dataloaded = false;
   QuerySnapshot alltheorysubjects;
 
@@ -28,11 +30,11 @@ class _TheorySubjectsState extends State<TheorySubjects> {
         )),
   );
 
-  final CollectionReference theorysubjects =
-      Firestore.instance.collection('Theory Subjects');
-
   Future<void> gettheorysubjects() async {
+    await setuid();
     try {
+      final CollectionReference theorysubjects =
+          Firestore.instance.collection('${uid}_Theory Subjects');
       QuerySnapshot result = await theorysubjects.getDocuments();
       setState(() {
         alltheorysubjects = result;
@@ -50,6 +52,8 @@ class _TheorySubjectsState extends State<TheorySubjects> {
 
   Future<void> present(subjectdatamap) async {
     try {
+      final CollectionReference theorysubjects =
+          Firestore.instance.collection('${uid}_Theory Subjects');
       await theorysubjects
           .document(subjectdatamap["name_of_subject"])
           .updateData({
@@ -67,6 +71,8 @@ class _TheorySubjectsState extends State<TheorySubjects> {
 
   Future<void> absent(subjectdatamap) async {
     try {
+      final CollectionReference theorysubjects =
+          Firestore.instance.collection('${uid}_Theory Subjects');
       await theorysubjects
           .document(subjectdatamap["name_of_subject"])
           .updateData({
@@ -77,6 +83,17 @@ class _TheorySubjectsState extends State<TheorySubjects> {
             100),
       });
       initState();
+    } catch (e) {
+      print(e.message);
+    }
+  }
+
+  Future<void> setuid() async {
+    try {
+      FirebaseUser user = await FirebaseAuth.instance.currentUser();
+      setState(() {
+        uid = user.uid;
+      });
     } catch (e) {
       print(e.message);
     }

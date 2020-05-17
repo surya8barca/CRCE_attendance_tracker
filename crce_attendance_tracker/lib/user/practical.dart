@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crce_attendance_tracker/bodyloading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -9,6 +10,7 @@ class PracticalSubjects extends StatefulWidget {
 }
 
 class _PracticalSubjectsState extends State<PracticalSubjects> {
+  static String uid;
   bool dataloaded = false;
   QuerySnapshot allpracticalsubjects;
 
@@ -28,11 +30,11 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
         )),
   );
 
-  final CollectionReference practicalsubjects =
-      Firestore.instance.collection('Practical Subjects');
-
   Future<void> getpracticalsubjects() async {
+    await setuid();
     try {
+      final CollectionReference practicalsubjects =
+          Firestore.instance.collection('${uid}_Practical Subjects');
       QuerySnapshot result = await practicalsubjects.getDocuments();
       setState(() {
         allpracticalsubjects = result;
@@ -50,6 +52,8 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
 
   Future<void> present(subjectdatamap) async {
     try {
+      final CollectionReference practicalsubjects =
+          Firestore.instance.collection('${uid}_Practical Subjects');
       await practicalsubjects
           .document(subjectdatamap["name_of_subject"])
           .updateData({
@@ -67,6 +71,8 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
 
   Future<void> absent(subjectdatamap) async {
     try {
+      final CollectionReference practicalsubjects =
+          Firestore.instance.collection('${uid}_Practical Subjects');
       await practicalsubjects
           .document(subjectdatamap["name_of_subject"])
           .updateData({
@@ -77,6 +83,17 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
             100),
       });
       initState();
+    } catch (e) {
+      print(e.message);
+    }
+  }
+
+  Future<void> setuid() async {
+    try {
+      FirebaseUser user = await FirebaseAuth.instance.currentUser();
+      setState(() {
+        uid = user.uid;
+      });
     } catch (e) {
       print(e.message);
     }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Start extends StatefulWidget {
-
   final String uid;
   Start({this.uid});
 
@@ -412,7 +411,11 @@ class _StartState extends State<Start> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Next1(
-                                          totalTheorySubjects: theorySubjects,totalPracticalSubjects: practicalSubjects,uid: widget.uid,),
+                                        totalTheorySubjects: theorySubjects,
+                                        totalPracticalSubjects:
+                                            practicalSubjects,
+                                        uid: widget.uid,
+                                      ),
                                     ));
                               } else {
                                 print('error');

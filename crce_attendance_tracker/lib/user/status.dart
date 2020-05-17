@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crce_attendance_tracker/bodyloading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Status extends StatefulWidget {
@@ -8,58 +9,66 @@ class Status extends StatefulWidget {
 }
 
 class _StatusState extends State<Status> {
+  static String uid;
 
   DocumentSnapshot userdetails;
   Color attendancecolor = Colors.green;
   String alert = 'Attendance above required (75%)';
-  double practicalattendance,theoryattendance;
+  double practicalattendance, theoryattendance;
 
   final CollectionReference userdata =
-          Firestore.instance.collection('Database');
-  final CollectionReference practicalsubjects =
-          Firestore.instance.collection('Practical Subjects');
-  final CollectionReference theorysubjects =
-          Firestore.instance.collection('Theory Subjects');
+      Firestore.instance.collection('Database');
 
-  Future<void> getattendance() async{
-    try{
-      QuerySnapshot theory=await theorysubjects.getDocuments();
-      QuerySnapshot pracs=await practicalsubjects.getDocuments();
-      double total1=0,total2=0;
-      for(int i=0;i<pracs.documents.length;i++)
-      {
-        total1=total1+pracs.documents[i].data["attendance"];
+  Future<void> getattendance() async {
+    try {
+      final CollectionReference practicalsubjects =
+          Firestore.instance.collection('${uid}_Practical Subjects');
+      final CollectionReference theorysubjects =
+          Firestore.instance.collection('${uid}_Theory Subjects');
+      QuerySnapshot theory = await theorysubjects.getDocuments();
+      QuerySnapshot pracs = await practicalsubjects.getDocuments();
+      double total1 = 0, total2 = 0;
+      for (int i = 0; i < pracs.documents.length; i++) {
+        total1 = total1 + pracs.documents[i].data["attendance"];
       }
-      for(int i=0;i<theory.documents.length;i++)
-      {
-        total2=total2+theory.documents[i].data["attendance"];
+      for (int i = 0; i < theory.documents.length; i++) {
+        total2 = total2 + theory.documents[i].data["attendance"];
       }
       print("total theory:${total2.toStringAsPrecision(3)}");
       print("total pracs:${total1.toStringAsPrecision(3)}");
 
       setState(() {
-        practicalattendance=total1/pracs.documents.length;
-        theoryattendance=total2/theory.documents.length;
+        practicalattendance = total1 / pracs.documents.length;
+        theoryattendance = total2 / theory.documents.length;
       });
 
       print("theory:${theoryattendance.toStringAsPrecision(3)}");
       print("pracs:${{practicalattendance.toStringAsPrecision(3)}}");
 
-      await userdata.document('User Details').updateData({
+      await userdata.document(uid).updateData({
+        "attendance": ((practicalattendance + theoryattendance) / 2),
+      });
+    } catch (e) {
+      print(e.message);
+    }
+  }
 
-        "attendance":((practicalattendance+theoryattendance)/2),
-      });    
-      }
-    catch(e)
-    {
+  Future<void> setuid() async {
+    try {
+      FirebaseUser user = await FirebaseAuth.instance.currentUser();
+      setState(() {
+        uid = user.uid;
+      });
+    } catch (e) {
       print(e.message);
     }
   }
 
   Future<void> getuserdetails() async {
     try {
+      await setuid();
       await getattendance();
-      DocumentSnapshot result = await userdata.document('User Details').get();
+      DocumentSnapshot result = await userdata.document(uid).get();
       setState(() {
         userdetails = result;
         print(userdetails.data);
@@ -74,8 +83,6 @@ class _StatusState extends State<Status> {
       print(e.message);
     }
   }
-
-  
 
   @override
   void initState() {
@@ -113,19 +120,19 @@ class _StatusState extends State<Status> {
                 height: 15,
               ),
               Text(
-                  'Theory Attendance: ${theoryattendance.toStringAsPrecision(3)}%',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                  ),
+                'Theory Attendance: ${theoryattendance.toStringAsPrecision(3)}%',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
                 ),
+              ),
               Text(
-                  'Practical Attendance: ${practicalattendance.toStringAsPrecision(3)}%',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                  ),
+                'Practical Attendance: ${practicalattendance.toStringAsPrecision(3)}%',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
                 ),
+              ),
               Center(
                 child: Text(
                   'Overall Attendance',

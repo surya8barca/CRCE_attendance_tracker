@@ -6,7 +6,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class Next2 extends StatefulWidget {
   final int totalPracticalSubjects;
   final String uid;
-  Next2({this.totalPracticalSubjects,this.uid});
+  Next2({this.totalPracticalSubjects, this.uid});
 
   @override
   _Next2State createState() => _Next2State();
@@ -241,7 +241,8 @@ class _Next2State extends State<Next2> {
                                   backgroundColor: Colors.cyan,
                                 ),
                                 title: "Finish",
-                                desc: "Are you sure you want to finish the setup?",
+                                desc:
+                                    "Are you sure you want to finish the setup?",
                                 buttons: [],
                                 content: Padding(
                                   padding: const EdgeInsets.all(15.0),
@@ -276,12 +277,52 @@ class _Next2State extends State<Next2> {
                                         buttonColor: Colors.black,
                                         child: RaisedButton(
                                           onPressed: () {
-                                            Navigator.pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => Login(),
+                                            Navigator.pop(context);
+                                            Alert(
+                                              context: context,
+                                              style: AlertStyle(
+                                                backgroundColor: Colors.cyan,
+                                              ),
+                                              title: "Registration Complete",
+                                              desc:
+                                                  "Please login to start tracking your attendance",
+                                              buttons: [],
+                                              content: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
+                                                child: ButtonTheme(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                  buttonColor: Colors.black,
+                                                  child: RaisedButton(
+                                                    onPressed: () {
+                                                      Navigator
+                                                          .pushAndRemoveUntil(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Login(),
+                                                              ),
+                                                              (route) => false);
+                                                    },
+                                                    child: Text(
+                                                      'Goto Login Page',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                                (route) => false);
+                                              ),
+                                            ).show();
                                           },
                                           child: Text(
                                             'Yes',
