@@ -1,6 +1,5 @@
 import 'package:crce_attendance_tracker/auth/registration.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 
@@ -52,7 +51,7 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
-                  'login',
+                  'Login',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     decoration: TextDecoration.underline,
@@ -97,7 +96,7 @@ class _LoginState extends State<Login> {
                     controller: txt2,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0),),
                       labelText: 'Password:',
                       labelStyle: TextStyle(
                         color: Colors.lightBlue,
@@ -146,6 +145,14 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(height: 30,),
+              Divider(
+      height:5.0,
+      thickness:2.0,
+      color:Colors.blueAccent,
+      indent:30.0,
+      endIndent:30.0, 
+            ),
+            SizedBox(height: 10,),
               Text(
                   'Still not a user?',
                   textAlign: TextAlign.center,
@@ -157,7 +164,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 20,),
                 RaisedButton(
                     padding: EdgeInsets.all(10),
-                    color: Colors.cyan,
+                    color: Colors.blue,
                     shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(30)),
