@@ -27,6 +27,7 @@ dependencies:
   flutter_spinkit:
   cloud_firestore:
   curved_navigation_bar:
+  firebase_auth:
 
 
 dev_dependencies:
