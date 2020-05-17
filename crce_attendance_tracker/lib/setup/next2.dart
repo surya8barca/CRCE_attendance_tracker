@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crce_attendance_tracker/home.dart';
+import 'package:crce_attendance_tracker/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Next2 extends StatefulWidget {
   final int totalPracticalSubjects;
-  Next2({this.totalPracticalSubjects});
+  final String uid;
+  Next2({this.totalPracticalSubjects,this.uid});
 
   @override
   _Next2State createState() => _Next2State();
@@ -33,7 +34,7 @@ class _Next2State extends State<Next2> {
 
   Future<bool> addTheorySubject() async {
     final CollectionReference theorySubjects =
-        Firestore.instance.collection('Practical Subjects');
+        Firestore.instance.collection('${widget.uid}_Practical Subjects');
     final snapShot = await theorySubjects.document(subjectName).get();
     if (snapShot.exists) {
       Alert(
@@ -278,7 +279,7 @@ class _Next2State extends State<Next2> {
                                             Navigator.pushAndRemoveUntil(
                                                 context,
                                                 MaterialPageRoute(
-                                                  builder: (context) => Home(),
+                                                  builder: (context) => Login(),
                                                 ),
                                                 (route) => false);
                                           },

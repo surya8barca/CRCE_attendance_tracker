@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Start extends StatefulWidget {
+
+  final String uid;
+  Start({this.uid});
+
   @override
   _StartState createState() => _StartState();
 }
@@ -57,7 +61,7 @@ class _StartState extends State<Start> {
     final CollectionReference database =
         Firestore.instance.collection('Database');
     try {
-      database.document('User Details').setData({
+      database.document(widget.uid).setData({
         'name': name,
         'roll_no': rollno,
         'branch': branch,
@@ -408,7 +412,7 @@ class _StartState extends State<Start> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Next1(
-                                          totalTheorySubjects: theorySubjects,totalPracticalSubjects: practicalSubjects),
+                                          totalTheorySubjects: theorySubjects,totalPracticalSubjects: practicalSubjects,uid: widget.uid,),
                                     ));
                               } else {
                                 print('error');

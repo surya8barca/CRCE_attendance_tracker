@@ -5,7 +5,8 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Next1 extends StatefulWidget {
   final int totalTheorySubjects, totalPracticalSubjects;
-  Next1({this.totalTheorySubjects, this.totalPracticalSubjects});
+  final String uid;
+  Next1({this.totalTheorySubjects, this.totalPracticalSubjects,this.uid});
 
   @override
   _Next1State createState() => _Next1State();
@@ -33,7 +34,7 @@ class _Next1State extends State<Next1> {
 
   Future<bool> addTheorySubject() async {
     final CollectionReference theorySubjects =
-        Firestore.instance.collection('Theory Subjects');
+        Firestore.instance.collection('${widget.uid}_Theory Subjects');
     final snapShot = await theorySubjects.document(subjectName).get();
     if (snapShot.exists) {
       Alert(
@@ -240,7 +241,7 @@ class _Next1State extends State<Next1> {
                                   MaterialPageRoute(
                                       builder: (context) => Next2(
                                           totalPracticalSubjects:
-                                              widget.totalPracticalSubjects)));
+                                              widget.totalPracticalSubjects,uid:widget.uid)));
                             },
                             color: Colors.blue,
                             child: Text(

@@ -1,3 +1,4 @@
+import 'package:crce_attendance_tracker/setup/start.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:crce_attendance_tracker/auth/login.dart';
@@ -143,7 +144,7 @@ class _RegistrationState extends State<Registration> {
                       {
                         if(await registeruser()){
                           print(userID);
-                          //push replacement to setup with uid
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Start(uid:userID)));
                         }
                       }
                       else
