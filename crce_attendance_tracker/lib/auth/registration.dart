@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:crce_attendance_tracker/auth/login.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -24,6 +25,23 @@ class _RegistrationState extends State<Registration> {
     else
     {
       return true;
+    }
+  }
+
+  String userID;
+
+  Future<bool> registeruser() async{
+    try{
+    AuthResult result = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    print(result.user.uid);
+    setState(() {
+      userID=result.user.uid;
+    });
+    return true;
+    }
+    catch(e){
+      Alert(context: context, title: 'Registration Error',desc: e.message,buttons: []).show();
+      return false;
     }
   }
 
@@ -123,12 +141,14 @@ class _RegistrationState extends State<Registration> {
                     onPressed: () async {
                       if(notEmptyField())
                       {
-                        //register into the database
-                        //push replacement to setup with uid
+                        if(await registeruser()){
+                          print(userID);
+                          //push replacement to setup with uid
+                        }
                       }
                       else
                       {
-                        Alert(context: context, title: 'Empty Fields',desc: "Please Enter ID and Password",buttons: []).show();
+                        Alert(context: context, title: 'Registration Error',desc: "Please Enter valid email and password",buttons: []).show();
                       }
                     },
                     child: Text(
