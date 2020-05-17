@@ -60,7 +60,6 @@ class _Next1State extends State<Next1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         centerTitle: true,
