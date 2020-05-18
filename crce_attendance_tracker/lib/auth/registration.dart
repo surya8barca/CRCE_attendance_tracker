@@ -62,6 +62,13 @@ class _RegistrationState extends State<Registration> {
       body: Builder(
         builder: (context) => SingleChildScrollView(
           child: Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
             padding: EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -73,8 +80,8 @@ class _RegistrationState extends State<Registration> {
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.solid,
-                    color: Colors.black,
-                    fontSize: 40,
+                    color: Colors.yellow,
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -93,12 +100,21 @@ class _RegistrationState extends State<Registration> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
+                              
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.blue,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
                             ),
                             labelText: 'Email Address:',
                             labelStyle: TextStyle(
                               color: Colors.lightBlue,
                               fontSize: 25.0,
                             )),
+                            style: TextStyle(color: Colors.blue,fontSize: 20),
                         onChanged: (value) {
                           if (value != null) {
                             setState(() {
@@ -118,11 +134,19 @@ class _RegistrationState extends State<Registration> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0)),
+                                enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.blue,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                             labelText: 'Password:',
                             labelStyle: TextStyle(
                               color: Colors.lightBlue,
                               fontSize: 25.0,
                             )),
+                            style: TextStyle(color: Colors.blue,fontSize: 20),
                         onChanged: (value) {
                           if (value != null) {
                             setState(() {
@@ -189,7 +213,7 @@ class _RegistrationState extends State<Registration> {
                   'Already a user?',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.cyan,
+                    color: Colors.orange,
                     fontSize: 20,
                   ),
                 ),

@@ -113,7 +113,14 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
       return Builder(
           builder: (context) => SingleChildScrollView(
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
+          width: MediaQuery.of(context).size.width,
+          
                   padding: EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -125,7 +132,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                           style: TextStyle(
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.solid,
-                            color: Colors.black,
+                            color: Colors.yellow,
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
                           ),
@@ -149,7 +156,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black,
+                                      color: Colors.red,
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(15),
@@ -176,7 +183,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                       Text(
                                         'Total Lectures: ${allpracticalsubjects.documents[i].data["total_lectures"].toString()}',
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: Colors.white,
                                           fontSize: 20,
                                         ),
                                       ),
@@ -186,7 +193,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                                       Text(
                                         'Lectures Attended: ${allpracticalsubjects.documents[i].data["lectures_attended"].toString()}',
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: Colors.white,
                                           fontSize: 20,
                                         ),
                                       ),

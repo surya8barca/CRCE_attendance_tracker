@@ -11,15 +11,25 @@ class _LoadingState extends State<BodyLoading> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SpinKitDualRing(
-              color: Colors.blue,
-              size: 80,
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SpinKitDualRing(
+                color: Colors.blue,
+                size: 80,
+              ),
+            ],
+          ),
         ),
       ),
     );

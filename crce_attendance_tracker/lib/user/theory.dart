@@ -113,6 +113,13 @@ class _TheorySubjectsState extends State<TheorySubjects> {
       return Builder(
           builder: (context) => SingleChildScrollView(
                 child: Container(
+                  decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
+          
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.all(10),
                   child: Column(
@@ -125,7 +132,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                           style: TextStyle(
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.solid,
-                            color: Colors.black,
+                            color: Colors.yellow,
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
                           ),
@@ -149,7 +156,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                                   padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black,
+                                      color: Colors.red,
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(15),
@@ -176,7 +183,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                                       Text(
                                         'Total Lectures: ${alltheorysubjects.documents[i].data["total_lectures"].toString()}',
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: Colors.white,
                                           fontSize: 20,
                                         ),
                                       ),
@@ -186,7 +193,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                                       Text(
                                         'Lectures Attended: ${alltheorysubjects.documents[i].data["lectures_attended"].toString()}',
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          color: Colors.white,
                                           fontSize: 20,
                                         ),
                                       ),
@@ -316,12 +323,6 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                                                 ),
                                               ),
                                             ).show();
-                                            //addlecture(allpracticalsubjects.documents[i].data);
-                                            //increment total_lectures
-                                            //ask for present/abset
-                                            //update lectures attended accordingly
-                                            //update attendance of subject selected
-                                            //update ovrall attendance
                                           },
                                           child: Text(
                                             'Add Lecture',

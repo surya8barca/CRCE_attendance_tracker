@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crce_attendance_tracker/auth/login.dart';
 import 'package:crce_attendance_tracker/loading.dart';
 import 'package:crce_attendance_tracker/user/status.dart';
 import 'package:crce_attendance_tracker/user/practical.dart';
@@ -6,6 +7,7 @@ import 'package:crce_attendance_tracker/user/theory.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class UserHome extends StatefulWidget {
   @override
@@ -45,6 +47,7 @@ class _UserHomeState extends State<UserHome> {
           child: Scaffold(
         drawer: Drawer(
         child: Container(
+          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
           decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/back.jpg'),
@@ -64,7 +67,7 @@ class _UserHomeState extends State<UserHome> {
                       radius: 45,
                       backgroundImage: AssetImage('images/user6.png'),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(height: 12),
                     Center(
                       child: Text(
                         userdetails["name"],
@@ -82,6 +85,78 @@ class _UserHomeState extends State<UserHome> {
                 color: Colors.blueAccent,
                 thickness: 3,
               ),
+              RaisedButton(
+                onPressed: () {
+                  Alert(
+                    context: context,
+                    style: AlertStyle(
+                      backgroundColor: Colors.cyan,
+                    ),
+                    title: "Logout",
+                    desc: "Are you sure you want to logout?",
+                    buttons: [],
+                    content: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          ButtonTheme(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            buttonColor: Colors.black,
+                            child: RaisedButton(
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'No',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          ButtonTheme(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            buttonColor: Colors.black,
+                            child: RaisedButton(
+                              onPressed: ()async{
+                                await FirebaseAuth.instance.signOut();
+                                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Login(),), (route) => false);
+                              },
+                              child: Text(
+                                'Yes',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ).show();
+                },
+                color: Colors.blueAccent,
+                padding: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Text(
+                  'Logout',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -107,28 +182,28 @@ class _UserHomeState extends State<UserHome> {
               index = value;
             });
           },
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           index: 1,
           items: <Widget>[
             Icon(
               Icons.book,
-              color: Colors.blue,
+              color: Colors.black,
               size: 40,
             ),
             Icon(
               Icons.home,
-              color: Colors.blue,
+              color: Colors.black,
               size: 40,
             ),
             Icon(
               Icons.laptop_chromebook,
-              color: Colors.blue,
+              color: Colors.black,
               size: 40,
             ),
           ],
-          buttonBackgroundColor: Colors.black,
+          buttonBackgroundColor: Colors.blue,
           height: 60,
-          color: Colors.black,
+          color: Colors.blue,
         ),
       ),
     );

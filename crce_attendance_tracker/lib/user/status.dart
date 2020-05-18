@@ -97,7 +97,14 @@ class _StatusState extends State<Status> {
     } else {
       return SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
           width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -110,7 +117,7 @@ class _StatusState extends State<Status> {
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.solid,
-                    color: Colors.black,
+                    color: Colors.yellow,
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
                   ),
@@ -122,14 +129,14 @@ class _StatusState extends State<Status> {
               Text(
                 'Theory Attendance: ${theoryattendance.toStringAsPrecision(3)}%',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.yellow,
                   fontSize: 25,
                 ),
               ),
               Text(
                 'Practical Attendance: ${practicalattendance.toStringAsPrecision(3)}%',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.yellow,
                   fontSize: 25,
                 ),
               ),
