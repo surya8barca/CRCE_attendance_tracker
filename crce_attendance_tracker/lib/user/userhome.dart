@@ -44,39 +44,46 @@ class _UserHomeState extends State<UserHome> {
     return SafeArea(
           child: Scaffold(
         drawer: Drawer(
-          elevation: 10,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/back.jpg'),
-                  fit: BoxFit.cover,
-                  ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  CircleAvatar(
-                    minRadius: 50,
-                    backgroundImage: AssetImage('images/user.png'),
-                  ),
-                  Text(
-                    userdetails["name"],
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+        child: Container(
+          decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
                     ),
+                ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              DrawerHeader(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 45,
+                      backgroundImage: AssetImage('images/user6.png'),
                     ),
-                ],
-
+                    SizedBox(height: 5,),
+                    Center(
+                      child: Text(
+                        userdetails["name"],
+                        style: TextStyle(
+                          color: Colors.yellow,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Divider(
+                color: Colors.blueAccent,
+                thickness: 3,
+              ),
+            ],
+          ),
         ),
 
         ),
