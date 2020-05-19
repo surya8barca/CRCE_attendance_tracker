@@ -1,7 +1,9 @@
 import 'package:crce_attendance_tracker/auth/registration.dart';
 import 'package:crce_attendance_tracker/user/userhome.dart';
+import 'package:crce_attendance_tracker/userclass.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Login extends StatefulWidget {
@@ -10,6 +12,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool rememberme=true;
   String email, password;
   TextEditingController txt1 = new TextEditingController();
   TextEditingController txt2 = new TextEditingController();
@@ -25,10 +28,18 @@ class _LoginState extends State<Login> {
     }
   }
 
+  final userbox = Hive.box('currentuser');
+
   Future<bool> login() async {
     try {
-      await FirebaseAuth.instance
+      AuthResult result =await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+          if(rememberme)
+          {
+            print('hive adding');
+            await userbox.add(User(result.user));
+            print('added in hive');
+          }
       return true;
     } catch (e) {
       Alert(
@@ -153,9 +164,32 @@ class _LoginState extends State<Login> {
                         onFieldSubmitted: (value) =>
                             FocusScope.of(context).unfocus(),
                       ),
-                      SizedBox(
-                        height: 30.0,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Checkbox(
+                            value: rememberme,
+                            checkColor: Colors.white,
+                            autofocus: true,
+                            focusColor: Colors.blue,
+                            activeColor: Colors.blue,
+                            hoverColor: Colors.blue,
+                            onChanged: (value) {
+                              setState(() {
+                                rememberme=value;
+                              });
+                            },
+                            ),
+                            Text(
+                              'Keep me Logged In',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                              ),
+                            ),
+                        ],
                       ),
+                      SizedBox(height: 20,),
                       RaisedButton(
                         padding: EdgeInsets.all(10),
                         color: Colors.cyan,
