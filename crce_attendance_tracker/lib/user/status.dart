@@ -55,6 +55,7 @@ class _StatusState extends State<Status> {
 
   Future<void> setuid() async {
     try {
+
       FirebaseUser user = await FirebaseAuth.instance.currentUser();
       setState(() {
         uid = user.uid;

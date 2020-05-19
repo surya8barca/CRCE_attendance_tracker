@@ -347,6 +347,7 @@ class _TheorySubjectsState extends State<TheorySubjects> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 150,)
                     ],
                   ),
                 ),

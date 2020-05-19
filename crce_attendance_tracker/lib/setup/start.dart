@@ -78,13 +78,13 @@ class _StartState extends State<Start> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.black,
           centerTitle: true,
           title: Text(
             'Setup',
             style: TextStyle(
               fontSize: 28.0,
-              color: Colors.black,
+              color: Colors.blue,
             ),
           ),
         ),
@@ -92,6 +92,12 @@ class _StartState extends State<Start> {
             builder: (context) => SingleChildScrollView(
                 child: Container(
                     width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
                     padding: EdgeInsets.all(10),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -100,7 +106,7 @@ class _StartState extends State<Start> {
                             'Enter User Details',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.yellow,
                                 fontSize: 23,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -112,7 +118,7 @@ class _StartState extends State<Start> {
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 border:
-                                    Border.all(color: Colors.blue, width: 2),
+                                    Border.all(color: Colors.white, width: 2),
                                 borderRadius: BorderRadius.circular(15)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -123,27 +129,27 @@ class _StartState extends State<Start> {
                                   enableSuggestions: true,
                                   textCapitalization: TextCapitalization.words,
                                   style: TextStyle(
-                                      color: Colors.yellow, fontSize: 25),
+                                      color: Colors.blue, fontSize: 25),
                                   autocorrect: true,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       labelText: 'Name:',
                                       labelStyle: TextStyle(
-                                        color: Colors.orange,
+                                        color: Colors.blue,
                                       ),
                                       helperText: '*required',
                                       helperStyle:
@@ -167,27 +173,27 @@ class _StartState extends State<Start> {
                                   keyboardType: TextInputType.number,
                                   textCapitalization: TextCapitalization.words,
                                   style: TextStyle(
-                                      color: Colors.yellow, fontSize: 25),
+                                      color: Colors.blue, fontSize: 25),
                                   autocorrect: true,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       labelText: 'Roll Number:',
                                       labelStyle: TextStyle(
-                                        color: Colors.orange,
+                                        color: Colors.blue,
                                       ),
                                       helperText: '*required',
                                       helperStyle:
@@ -212,27 +218,27 @@ class _StartState extends State<Start> {
                                   enableSuggestions: true,
                                   textCapitalization: TextCapitalization.words,
                                   style: TextStyle(
-                                      color: Colors.yellow, fontSize: 25),
+                                      color: Colors.blue, fontSize: 25),
                                   autocorrect: true,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: BorderSide(
-                                          color: Colors.yellow,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Colors.yellow,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       labelText: 'Branch:',
                                       labelStyle: TextStyle(
-                                        color: Colors.orange,
+                                        color: Colors.blue,
                                       ),
                                       helperText: '*required',
                                       helperStyle:
@@ -258,27 +264,27 @@ class _StartState extends State<Start> {
                                   keyboardType: TextInputType.number,
                                   textCapitalization: TextCapitalization.words,
                                   style: TextStyle(
-                                      color: Colors.yellow, fontSize: 25),
+                                      color: Colors.blue, fontSize: 25),
                                   autocorrect: true,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       labelText: 'Semester:',
                                       labelStyle: TextStyle(
-                                        color: Colors.orange,
+                                        color: Colors.blue,
                                       ),
                                       helperText: '*required',
                                       helperStyle:
@@ -294,46 +300,61 @@ class _StartState extends State<Start> {
                                     FocusScope.of(context).nextFocus();
                                   },
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Enter Course Details',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Center(
+                            child: Text(
+                                    'Enter Course Details',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.yellow,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                          ),
+                          SizedBox(
+                            height: 25,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(15),
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
                                 TextField(
                                   maxLengthEnforced: true,
                                   enableSuggestions: true,
                                   keyboardType: TextInputType.number,
                                   style: TextStyle(
-                                      color: Colors.yellow, fontSize: 25),
+                                      color: Colors.blue, fontSize: 25),
                                   autocorrect: true,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
-                                      labelText: 'Number of Theory Subjects:',
+                                      labelText: 'Total Theory Subjects:',
                                       labelStyle: TextStyle(
-                                        color: Colors.orange,
+                                        color: Colors.blue,
                                       ),
                                       helperText: '*required',
                                       helperStyle:
@@ -357,28 +378,28 @@ class _StartState extends State<Start> {
                                   enableSuggestions: true,
                                   keyboardType: TextInputType.number,
                                   style: TextStyle(
-                                      color: Colors.yellow, fontSize: 25),
+                                      color: Colors.blue, fontSize: 25),
                                   autocorrect: true,
                                   textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           width: 2,
                                         ),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       labelText:
-                                          'Number of Practical Subjects:',
+                                          'Total Practical Subjects:',
                                       labelStyle: TextStyle(
-                                        color: Colors.orange,
+                                        color: Colors.blue,
                                       ),
                                       helperText: '*required',
                                       helperStyle:
@@ -391,15 +412,15 @@ class _StartState extends State<Start> {
                                     }
                                   },
                                   onSubmitted: (value) {
-                                    FocusScope.of(context).nextFocus();
+                                    FocusScope.of(context).unfocus();
                                   },
                                 ),
                               ],
                             ),
                           ),
                           SizedBox(
-                            height: 15,
-                          ),
+                                  height: 20,
+                                ),
                           FlatButton(
                             padding: EdgeInsets.all(15),
                             shape: RoundedRectangleBorder(
@@ -427,6 +448,7 @@ class _StartState extends State<Start> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 25,
                               ),
                             ),

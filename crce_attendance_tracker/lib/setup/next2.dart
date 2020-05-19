@@ -62,20 +62,27 @@ class _Next2State extends State<Next2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
         centerTitle: true,
         title: Text(
           'Setup',
           style: TextStyle(
             fontSize: 28.0,
-            color: Colors.black,
+            color: Colors.blue,
           ),
         ),
       ),
       body: Builder(
           builder: (context) => SingleChildScrollView(
                 child: Container(
+                  decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/back.jpg'),
+                    fit: BoxFit.cover,
+                    ),
+                ),
                     width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
                     padding: EdgeInsets.all(10),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +91,7 @@ class _Next2State extends State<Next2> {
                             'Enter Details of Practical Subjects',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.yellow,
                                 fontSize: 23,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -106,7 +113,7 @@ class _Next2State extends State<Next2> {
                                           padding: EdgeInsets.all(5),
                                           decoration: BoxDecoration(
                                               border: Border.all(
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                   width: 2),
                                               borderRadius:
                                                   BorderRadius.circular(15)),
@@ -116,8 +123,8 @@ class _Next2State extends State<Next2> {
                                                 'Subject ${i + 1}',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 23,
+                                                    color: Colors.teal,
+                                                    fontSize: 25,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -131,7 +138,7 @@ class _Next2State extends State<Next2> {
                                                 textCapitalization:
                                                     TextCapitalization.words,
                                                 style: TextStyle(
-                                                    color: Colors.yellow,
+                                                    color: Colors.blue,
                                                     fontSize: 25),
                                                 autocorrect: true,
                                                 textInputAction:
@@ -143,14 +150,14 @@ class _Next2State extends State<Next2> {
                                                           BorderRadius.circular(
                                                               15),
                                                       borderSide: BorderSide(
-                                                        color: Colors.black,
+                                                        color: Colors.blue,
                                                         width: 2,
                                                       ),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color: Colors.black,
+                                                        color: Colors.blue,
                                                         width: 2,
                                                       ),
                                                       borderRadius:
@@ -160,7 +167,7 @@ class _Next2State extends State<Next2> {
                                                     labelText:
                                                         'Name of Subject:',
                                                     labelStyle: TextStyle(
-                                                      color: Colors.orange,
+                                                      color: Colors.blue,
                                                     ),
                                                     helperText: '*required',
                                                     helperStyle: TextStyle(
@@ -207,12 +214,13 @@ class _Next2State extends State<Next2> {
                                                         .show();
                                                   }
                                                 },
-                                                color: Colors.blue,
+                                                color: Colors.cyan,
                                                 child: Text(
                                                   'Add Subject',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: 25,
                                                   ),
                                                 ),
@@ -346,10 +354,12 @@ class _Next2State extends State<Next2> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 25,
                               ),
                             ),
                           ),
+                          SizedBox(height: 200,)
                         ])),
               )),
     );

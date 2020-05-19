@@ -347,6 +347,7 @@ class _PracticalSubjectsState extends State<PracticalSubjects> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 150,)
                     ],
                   ),
                 ),
