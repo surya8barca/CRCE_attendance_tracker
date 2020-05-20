@@ -4,7 +4,7 @@ import 'package:crce_attendance_tracker/loading.dart';
 import 'package:crce_attendance_tracker/user/status.dart';
 import 'package:crce_attendance_tracker/user/practical.dart';
 import 'package:crce_attendance_tracker/user/theory.dart';
-import 'package:crce_attendance_tracker/userclass.dart';
+import 'package:crce_attendance_tracker/usermodel.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,31 +23,26 @@ class _UserHomeState extends State<UserHome> {
   int index = 1;
   List pages = [TheorySubjects(), Status(), PracticalSubjects()];
   Map userdetails;
-  FirebaseUser currentUser;
-
+  
   Future<void> getUserDetails()async{
+    String uid;
     try{
       if(userbox.length==0)
       {
-        FirebaseUser resultuser = await FirebaseAuth.instance.currentUser();
-        setState(() {
-      currentUser=resultuser;
-      print('from firebase');
-      print(resultuser.uid);
-    });
+       FirebaseUser currentuser = await FirebaseAuth.instance.currentUser();
+       setState(() {
+         uid=currentuser.uid;
+       });
     }
     else{
       print('hive enter');
       final data = await userbox.getAt(0) as User;
-      print('here');
-      FirebaseUser resultuser = data.user;
       setState(() {
-        currentUser=resultuser;
-        print('from hive');
-        print(resultuser.uid);
+        uid=data.uid;
       });
+      print('here');
+      
     }
-    String uid = currentUser.uid;
     DocumentSnapshot result = await Firestore.instance.collection('Database').document(uid).get();
     setState(() {
       userdetails=result.data;
@@ -156,7 +151,10 @@ class _UserHomeState extends State<UserHome> {
                             child: RaisedButton(
                               onPressed: ()async{
                                 await FirebaseAuth.instance.signOut();
-                                //delete user from hive database if not empty
+                                if(userbox.length!=0)
+                                {
+                                  await userbox.deleteAt(0);
+                                }
                                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Login(),), (route) => false);
                               },
                               child: Text(

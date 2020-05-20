@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crce_attendance_tracker/bodyloading.dart';
+import 'package:crce_attendance_tracker/usermodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class Status extends StatefulWidget {
   @override
@@ -52,14 +54,22 @@ class _StatusState extends State<Status> {
       print(e.message);
     }
   }
-
+  final userbox=Hive.box('currentuser');
   Future<void> setuid() async {
     try {
-
-      FirebaseUser user = await FirebaseAuth.instance.currentUser();
-      setState(() {
-        uid = user.uid;
-      });
+      if(userbox.length == 0)
+      {
+        FirebaseUser result = await FirebaseAuth.instance.currentUser();
+        setState((){
+          uid=result.uid;
+        });  
+      }
+      else{
+        final data =await userbox.getAt(0) as User;
+        setState(() {
+          uid=data.uid;
+        });
+      }
     } catch (e) {
       print(e.message);
     }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'userclass.dart';
+part of 'usermodel.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -8,7 +8,7 @@ part of 'userclass.dart';
 
 class UserAdapter extends TypeAdapter<User> {
   @override
-  final typeId = 0;
+  final int typeId =0;
   @override
   User read(BinaryReader reader) {
     var numOfFields = reader.readByte();
@@ -16,7 +16,7 @@ class UserAdapter extends TypeAdapter<User> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return User(
-      fields[0] as FirebaseUser,
+      uid: fields[0] as String,
     );
   }
 
@@ -25,6 +25,6 @@ class UserAdapter extends TypeAdapter<User> {
     writer
       ..writeByte(1)
       ..writeByte(0)
-      ..write(obj.user);
+      ..write(obj.uid);
   }
 }

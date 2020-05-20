@@ -1,6 +1,6 @@
 import 'package:crce_attendance_tracker/auth/registration.dart';
 import 'package:crce_attendance_tracker/user/userhome.dart';
-import 'package:crce_attendance_tracker/userclass.dart';
+import 'package:crce_attendance_tracker/usermodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
           if(rememberme)
           {
             print('hive adding');
-            await userbox.add(User(result.user));
+            await userbox.add(User(uid: result.user.uid));
             print('added in hive');
           }
       return true;
