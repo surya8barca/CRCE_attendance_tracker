@@ -10,6 +10,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  bool passwordtexthide = true;
   String email, password;
   TextEditingController txt1 = new TextEditingController();
   TextEditingController txt2 = new TextEditingController();
@@ -130,7 +131,7 @@ class _RegistrationState extends State<Registration> {
                       ),
                       TextFormField(
                         controller: txt2,
-                        obscureText: true,
+                        obscureText: passwordtexthide,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0)),
@@ -140,6 +141,18 @@ class _RegistrationState extends State<Registration> {
                                 width: 2,
                               ),
                               borderRadius: BorderRadius.circular(25),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.remove_red_eye,color: Colors.blue,),
+                              onPressed: () async{
+                                setState(() {
+                                  passwordtexthide=false;
+                                });
+                                await Future.delayed(Duration(seconds: 2));
+                                setState(() {
+                                  passwordtexthide=true;
+                                });
+                              },
                             ),
                             labelText: 'Password:',
                             labelStyle: TextStyle(
